@@ -25,22 +25,24 @@ void NewArrayMin(int[] array)
     int lenght = array.Length;
     for (int i = 0; i < lenght; i++)
     {
-        for (int j = 0; j < lenght-1; j++)
-        {
-            if (array[j] > array[j + 1])
-            {
-                int temp = array[j+1];
-                array[j+1] = array[j];
-                array[j] = temp;
-
-                printMassive(array);
-            }
-
-        }
-
-
-
+        int locMin = minArray(i, array);
+        int temp = array[locMin];
+        array[locMin] = array[i];
+        array[i] = temp;
     }
+    printMassive(array);
+}
+int minArray(int start, int[] array) // поиск индекса минимума, начиная с элемента start
+{
+    int mimPos = start;
+    for (int i = start; i < array.Length; i++) //
+    {
+        if (array[i] < array[mimPos])
+        {
+            mimPos = i;
+        }
+    }
+    return mimPos;
 }
 int[] massive = CreateMassive(8);
 printMassive(massive);
